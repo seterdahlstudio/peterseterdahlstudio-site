@@ -1,0 +1,251 @@
+/* =========================================================
+   Peter Seterdahl — site styles
+   Change the look in one place: the variables just below.
+   ========================================================= */
+
+:root {
+  --text: #000;
+  --background: #fff;
+  --muted: #8a8a8a;        /* hover color and secondary text */
+  --rule: #000;            /* the line under the header */
+  --font: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --nav-size: 11px;
+  --caption-size: 12px;
+  --body-size: 14px;
+  --max-width: 1200px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font);
+  color: var(--text);
+  background: var(--background);
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; text-decoration: none; }
+a:hover { color: var(--muted); }
+img { display: block; max-width: 100%; height: auto; }
+
+.site-wrapper {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 30px 16px 60px;
+}
+
+/* ---------- Header + four buttons ---------- */
+
+header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: 24px;
+  position: relative;
+}
+
+.site-title {
+  font-size: 19px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+nav { display: flex; gap: 24px; }
+
+nav a {
+  font-size: var(--nav-size);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+nav a.active {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 1px;
+}
+
+.menu-toggle {
+  display: none;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  font-size: 24px;
+  line-height: 1;
+  padding: 4px;
+  color: var(--text);
+}
+
+/* ---------- Home + About: image left, text right ---------- */
+
+.split {
+  display: grid;
+  grid-template-columns: 38% 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+.split img { width: 100%; }
+
+.text p {
+  font-size: var(--body-size);
+  line-height: 1.55;
+  margin-bottom: 1em;
+  max-width: 60ch;
+}
+
+.text h2 {
+  font-size: var(--nav-size);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin: 28px 0 10px;
+}
+
+.contact {
+  margin-top: 24px;
+  font-size: var(--caption-size);
+  font-weight: 700;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 10px;
+}
+
+.contact .sep { color: var(--muted); font-weight: 400; }
+
+/* ---------- Gallery pages ---------- */
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 40px 24px;
+}
+
+/* Each work sits in a square frame, uncropped, resting on the bottom edge,
+   so captions line up across a row no matter the artwork's shape. */
+.work .frame {
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+}
+
+.work .frame img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  cursor: zoom-in;
+  transition: opacity 0.15s;
+}
+
+.work a:hover img { opacity: 0.85; }
+
+.work figcaption {
+  font-size: var(--caption-size);
+  line-height: 1.45;
+  margin-top: 10px;
+}
+
+.work figcaption .title { font-style: italic; }
+.work figcaption .details { color: var(--muted); }
+
+/* ---------- Full-screen viewer (opens when a work is clicked) ---------- */
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: var(--background);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 40px 70px;
+}
+
+.lightbox.open { display: flex; }
+
+.lightbox img {
+  max-width: 100%;
+  max-height: calc(100vh - 140px);
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+.lightbox .lb-caption {
+  font-size: var(--caption-size);
+  line-height: 1.45;
+  margin-top: 14px;
+  text-align: center;
+}
+
+.lightbox .lb-caption .title { font-style: italic; }
+.lightbox .lb-caption .details { color: var(--muted); }
+
+.lightbox button {
+  position: absolute;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 28px;
+  line-height: 1;
+  padding: 12px;
+}
+
+.lightbox button:hover { color: var(--muted); }
+.lb-close { top: 16px; right: 16px; }
+.lb-prev  { left: 12px;  top: 50%; transform: translateY(-50%); }
+.lb-next  { right: 12px; top: 50%; transform: translateY(-50%); }
+
+/* ---------- Footer ---------- */
+
+footer {
+  margin-top: 60px;
+  font-size: var(--caption-size);
+  color: var(--muted);
+}
+
+/* ---------- Smaller screens ---------- */
+
+@media (max-width: 900px) {
+  .gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .split { grid-template-columns: 1fr; gap: 24px; }
+}
+
+@media (max-width: 700px) {
+  .site-wrapper { padding: 20px 16px 40px; }
+  .menu-toggle { display: block; }
+
+  nav {
+    display: none;
+    position: absolute;
+    top: calc(100% + 1px);
+    right: 0;
+    flex-direction: column;
+    gap: 0;
+    min-width: 200px;
+    background: var(--background);
+    border: 1px solid var(--rule);
+    z-index: 100;
+  }
+
+  nav.open { display: flex; }
+  nav a { padding: 14px 20px; border-bottom: 1px solid #eee; font-size: 12px; }
+  nav a:last-child { border-bottom: 0; }
+
+  .lightbox { padding: 60px 16px; }
+  .lb-prev, .lb-next { top: auto; bottom: 12px; transform: none; }
+}
+
+@media (max-width: 480px) {
+  .gallery { grid-template-columns: 1fr; gap: 36px; }
+  .work .frame { aspect-ratio: auto; }
+}
