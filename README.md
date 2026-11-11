@@ -68,3 +68,4 @@ Buy **peterseterdahl.com** from a registrar. Cloudflare, Porkbun and Namecheap a
 **Updating later:** in the repository, click a file, then the pencil icon, edit it and commit. To add photos, use **Add file → Upload files** inside `images/paintings/` (or another section folder). The live site updates within a minute. GitHub keeps every past version, so any change can be undone.
 
 **Simpler option:** at app.netlify.com/drop, drag this folder onto the page to get a live link right away. Then connect the domain under **Domain management**. To update the site, drag the folder in again.
+
