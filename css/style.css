@@ -1,5 +1,5 @@
 /* =========================================================
-   Peter Seterdahl — site styles
+   Peter Seterdahl â€” site styles
    Change the look in one place: the variables just below.
    ========================================================= */
 
@@ -7,7 +7,7 @@
   --text: #000;
   --background: #fff;
   --muted: #8a8a8a;        /* hover color and secondary text */
-  --rule: #000;            /* the line under the header */
+  --rule: #000;            /* border of the phone menu */
   --font: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
   --nav-size: 11px;
   --caption-size: 12px;
@@ -41,8 +41,7 @@ header {
   align-items: baseline;
   justify-content: space-between;
   padding-bottom: 10px;
-  border-bottom: 1px solid var(--rule);
-  margin-bottom: 24px;
+  margin-bottom: 32px;
   position: relative;
 }
 
@@ -67,6 +66,11 @@ nav a.active {
   text-underline-offset: 4px;
   text-decoration-thickness: 1px;
 }
+
+/* Instagram and Email icons, added at the top right by js/site.js */
+nav a.contact-link { font-size: 16px; line-height: 1; align-self: center; }
+nav a.contact-link .contact-label { display: none; }
+nav a.contact-link.first { margin-left: 16px; }
 
 .menu-toggle {
   display: none;
@@ -240,6 +244,10 @@ footer {
   nav.open { display: flex; }
   nav a { padding: 14px 20px; border-bottom: 1px solid #eee; font-size: 12px; }
   nav a:last-child { border-bottom: 0; }
+  nav a.contact-link { font-size: 12px; align-self: stretch; }
+  nav a.contact-link.first { margin-left: 0; }
+  nav a.contact-link i { font-size: 15px; width: 18px; margin-right: 8px; }
+  nav a.contact-link .contact-label { display: inline; }
 
   .lightbox { padding: 60px 16px; }
   .lb-prev, .lb-next { top: auto; bottom: 12px; transform: none; }
