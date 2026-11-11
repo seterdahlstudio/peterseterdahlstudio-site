@@ -1,6 +1,33 @@
-// Mobile menu: the ☰ button shows and hides the four links.
+// Instagram and Email links at the top right of every page.
+// To change them, edit the two lines below. To hide one, leave its quotes empty: "".
+const EMAIL = "peterseterdahlstudio@gmail.com";
+const INSTAGRAM = "https://www.instagram.com/peterseterdahl/";
+
+// Phone menu: the ☰ button shows and hides the menu.
 const toggle = document.querySelector('.menu-toggle');
 const nav = document.querySelector('nav');
+
+if (nav) {
+  // The two little icons come from Font Awesome, a free icon library.
+  const icons = document.createElement('link');
+  icons.rel = 'stylesheet';
+  icons.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css';
+  document.head.appendChild(icons);
+
+  const contacts = [];
+  if (INSTAGRAM) contacts.push({ label: 'Instagram', icon: 'fa-brands fa-instagram', href: INSTAGRAM, newTab: true });
+  if (EMAIL) contacts.push({ label: 'Email', icon: 'fa-regular fa-envelope', href: 'mailto:' + EMAIL, newTab: false });
+  contacts.forEach((c, i) => {
+    const a = document.createElement('a');
+    a.className = 'contact-link' + (i === 0 ? ' first' : '');
+    a.href = c.href;
+    a.setAttribute('aria-label', c.label);
+    a.title = c.label;
+    a.innerHTML = `<i class="${c.icon}" aria-hidden="true"></i><span class="contact-label">${c.label}</span>`;
+    if (c.newTab) { a.target = '_blank'; a.rel = 'noopener'; }
+    nav.appendChild(a);
+  });
+}
 if (toggle && nav) {
   toggle.addEventListener('click', () => {
     const open = nav.classList.toggle('open');
